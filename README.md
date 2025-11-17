@@ -11,5 +11,3 @@ Key features
 
 Documentation: https://jetleaf.hapnium.com/docs/data
 Repository: https://github.com/jetleaf/jetleaf_data
-
-If you want, I can add short examples for connecting to a database or using repository helpers.
