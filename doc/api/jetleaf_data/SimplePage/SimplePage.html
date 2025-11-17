@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the SimplePage.new constructor from Class SimplePage from the jetleaf_data library, for the Dart programming language.">
+  <title>SimplePage.new constructor - SimplePage - jetleaf_data library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">jetleaf_data</a></li>
+    <li><a href="../../jetleaf_data/">jetleaf_data.dart</a></li>
+    <li><a href="../../jetleaf_data/SimplePage-class.html">SimplePage<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></a></li>
+    <li class="self-crumb">SimplePage.new constructor</li>
+  </ol>
+  <div class="self-name">SimplePage.new</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="jetleaf_data&#47;SimplePage-class-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-constructor">SimplePage&lt;<wbr><span class="type-parameter">T</span>&gt;</span> constructor 
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+      <span class="name ">SimplePage&lt;<wbr><span class="type-parameter">T</span>&gt;</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="-param-source"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">source</span>, </span></li>
+<li><span class="parameter" id="-param-pageable"><span class="type-annotation"><a href="../../jetleaf_data/Pageable-class.html">Pageable</a></span> <span class="parameter-name">pageable</span>, [</span></li>
+<li><span class="parameter" id="-param-total"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/int-class.html">int</a></span> <span class="parameter-name">total</span> = <span class="default-value">0</span></span></li>
+</ol>])
+    </section>
+    
+<section class="desc markdown">
+  <p>Constructs a <a href="../../jetleaf_data/SimplePage-class.html">SimplePage</a> with the given <code>source</code> elements, <code>pageable</code>
+metadata, and optional <code>total</code> element count.</p>
+<p>If <code>total</code> is not provided, it will be calculated from the pageable's
+offset and the number of elements in <code>source</code>, if applicable.</p>
+<h3 id="example">Example</h3>
+<pre class="language-dart"><code class="language-dart">final page = SimplePage(usersStream, pageRequest, 42);
+print(page.getTotalElements()); // 42
+</code></pre>
+<p>Concrete implementation of <a href="../../jetleaf_data/Page-class.html">Page&lt;T&gt;</a> representing a <strong>page of elements</strong>
+with an optional total element count.</p>
+<p><a href="../../jetleaf_data/SimplePage-class.html">SimplePage</a> stores the page content, pagination metadata from <a href="../../jetleaf_data/Pageable-class.html">Pageable</a>,
+and the total number of elements across the dataset. It calculates
+total pages and provides navigation helpers accordingly.</p>
+<h3 id="usage-example">Usage Example</h3>
+<pre class="language-dart"><code class="language-dart">final pageRequest = PageRequest.ofSize(10);
+final page = SimplePage(usersStream, pageRequest, 35);
+
+print(page.getTotalElements()); // 35
+print(page.getTotalPages());    // 4
+print(page.hasNext());          // true
+print(page.getContent());       // list of users
+
+// Mapping page content to another type
+final idPage = page.map((user) =&gt; user.id);
+print(idPage.getContent()); // List&lt;int&gt;
+</code></pre>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">SimplePage(super.source, super.pageable, [int total = 0])
+    : total = pageable.optional()
+        .filter((pg) =&gt; source.isNotEmpty)
+        .filter((pg) =&gt; pg.getOffset().plus(pg.getPageSize()).isGreaterThan(total))
+        .map((pg) =&gt; pg.getOffset().plus(source.length))
+        .orElse(total);</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../../index.html">jetleaf_data</a></li>
+    <li><a href="../../jetleaf_data/">jetleaf_data</a></li>
+    <li><a href="../../jetleaf_data/SimplePage-class.html">SimplePage<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></a></li>
+    <li class="self-crumb">SimplePage.new constructor</li>
+</ol>
+
+    <h5>SimplePage class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-left-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    jetleaf_data
+      1.0.0
+  </span>
+  
+</footer>
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

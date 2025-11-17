@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the CrudRepository class from the jetleaf_data library, for the Dart programming language.">
+  <title>CrudRepository class - jetleaf_data library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">jetleaf_data</a></li>
+    <li><a href="../jetleaf_data/">jetleaf_data.dart</a></li>
+    <li class="self-crumb">CrudRepository<span class="signature">&lt;<wbr><span class="type-parameter">T</span>, <span class="type-parameter">ID</span>&gt;</span> class</li>
+  </ol>
+  <div class="self-name">CrudRepository</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar="jetleaf_data&#47;jetleaf_data-library-sidebar.html"
+    data-below-sidebar="jetleaf_data&#47;CrudRepository-class-sidebar.html">
+    <div>
+<h1><span class="kind-class">CrudRepository&lt;<wbr><span class="type-parameter">T</span>, <span class="type-parameter">ID</span>&gt;</span> class 
+    <a href="https://dart.dev/language/class-modifiers#abstract" class="feature feature-abstract" title="This type can not be directly constructed.">abstract</a>
+ 
+</h1></div>
+
+    
+<section class="desc markdown">
+  <p>A generic <strong>CRUD repository interface</strong> extending <a href="../repository/Repository-class.html">Repository</a>, providing
+standard create, read, update, and delete operations for entities of type <code>T</code>
+identified by <code>ID</code>.</p>
+<p>This class delegates all operations to an optional <a href="../jetleaf_data/RepositoryExecutor-class.html">RepositoryExecutor</a>,
+which performs the actual data access. Default implementations are safe
+no-ops or return default values, making this class suitable for stubbing,
+testing, or extending with real persistence logic.</p>
+<h3 id="features">Features</h3>
+<ul>
+<li>Standard CRUD operations: find, save, delete, and count.</li>
+<li>Supports batch operations on lists or iterables of entities.</li>
+<li>Delegates execution to <a href="../jetleaf_data/RepositoryExecutor-class.html">RepositoryExecutor</a> for uniform behavior.</li>
+<li>Can be extended for database-, memory-, or API-backed repositories.</li>
+</ul>
+<h3 id="usage-example">Usage Example</h3>
+<pre class="language-dart"><code class="language-dart">class UserRepository extends CrudRepository&lt;User, String&gt; {}
+
+final repo = UserRepository();
+final user = await repo.findById("123");
+final allUsers = await repo.findAll();
+await repo.save(User("Alice"));
+</code></pre>
+<h3 id="design-notes">Design Notes</h3>
+<ul>
+<li>All query methods are asynchronous and return Futures.</li>
+<li>Methods returning iterables default to empty collections when executor is null.</li>
+<li>Methods returning single entities default to <code>null</code> when executor is null.</li>
+<li>Methods returning <code>bool</code> or <code>int</code> default to <code>false</code> or <code>0</code> respectively.</li>
+<li>Methods returning an entity default to returning the entity itself.</li>
+</ul>
+<h3 id="see-also">See Also</h3>
+<ul>
+<li><a href="../repository/Repository-class.html">Repository</a></li>
+<li><a href="../jetleaf_data/RepositoryExecutor-class.html">RepositoryExecutor</a></li>
+</ul>
+</section>
+
+
+    <section>
+      <dl class="dl-horizontal">
+        
+  <dt>Inheritance</dt>
+  <dd>
+    <ul class="gt-separated dark clazz-relationships">
+      <li><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object-class.html">Object</a></li>
+        <li><a href="../repository/Repository-class.html">Repository</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>, <span class="type-parameter">ID</span>&gt;</span></li>
+      <li>CrudRepository</li>
+    </ul>
+  </dd>
+
+        
+        
+
+          <dt>Implementers</dt>
+          <dd><ul class="comma-separated clazz-relationships">
+              <li><a href="../jetleaf_data/ListCrudRepository-class.html">ListCrudRepository</a></li>
+          </ul></dd>
+
+        
+        
+  <dt>Annotations</dt>
+  <dd>
+    <ul class="annotation-list clazz-relationships">
+        <li>@<a href="https://pub.dev/documentation/jetleaf_build/1.0.0/jetleaf_build/Generic-class.html">Generic</a>(CrudRepository)</li>
+    </ul>
+  </dd>
+
+
+      </dl>
+    </section>
+
+    
+  <section class="summary offset-anchor" id="constructors">
+    <h2>Constructors</h2>
+    <dl class="constructor-summary-list">
+        <dt id="CrudRepository.new" class="callable">
+          <span class="name"><a href="../jetleaf_data/CrudRepository/CrudRepository.html">CrudRepository.new</a></span><span class="signature">()</span>
+        </dt>
+        <dd>
+          
+        </dd>
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="instance-properties">
+    <h2>Properties</h2>
+    <dl class="properties">
+        <dt id="executor" class="property inherited">
+  <span class="name"><a href="../repository/Repository/executor.html">executor</a></span>
+  <span class="signature">&#8596; <a href="../jetleaf_data/RepositoryExecutor-class.html">RepositoryExecutor</a>?</span>
+  
+
+</dt>
+<dd class="inherited">
+  Optional executor used to perform repository operations.
+  <div class="features"><span class="feature">getter/setter pair</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="hashCode" class="property inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object/hashCode.html">hashCode</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  The hash code for this object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="runtimeType" class="property inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object/runtimeType.html">runtimeType</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Type-class.html">Type</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  A representation of the runtime type of the object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+
+    
+  <section
+      class="summary offset-anchor"
+      id="instance-methods">
+    <h2>Methods</h2>
+    <dl class="callables">
+        <dt id="delete" class="callable">
+  <span class="name"><a href="../jetleaf_data/CrudRepository/delete.html">delete</a></span><span class="signature">(<wbr><span class="parameter" id="delete-param-entity"><span class="type-annotation">T</span> <span class="parameter-name">entity</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Deletes a specific <code>entity</code> from the repository.
+  
+
+</dd>
+
+        <dt id="deleteAll" class="callable">
+  <span class="name"><a href="../jetleaf_data/CrudRepository/deleteAll.html">deleteAll</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Deletes all entities in the repository.
+  
+
+</dd>
+
+        <dt id="deleteAllByEntities" class="callable">
+  <span class="name"><a href="../jetleaf_data/CrudRepository/deleteAllByEntities.html">deleteAllByEntities</a></span><span class="signature">(<wbr><span class="parameter" id="deleteAllByEntities-param-entities"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">entities</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Deletes multiple <code>entities</code> from the repository.
+  
+
+</dd>
+
+        <dt id="deleteAllById" class="callable">
+  <span class="name"><a href="../jetleaf_data/CrudRepository/deleteAllById.html">deleteAllById</a></span><span class="signature">(<wbr><span class="parameter" id="deleteAllById-param-ids"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter">ID</span>&gt;</span></span> <span class="parameter-name">ids</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Deletes multiple entities by their <code>ids</code>.
+  
+
+</dd>
+
+        <dt id="deleteById" class="callable">
+  <span class="name"><a href="../jetleaf_data/CrudRepository/deleteById.html">deleteById</a></span><span class="signature">(<wbr><span class="parameter" id="deleteById-param-id"><span class="type-annotation">ID</span> <span class="parameter-name">id</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Deletes an entity by its <code>id</code>.
+  
+
+</dd>
+
+        <dt id="existsById" class="callable">
+  <span class="name"><a href="../jetleaf_data/CrudRepository/existsById.html">existsById</a></span><span class="signature">(<wbr><span class="parameter" id="existsById-param-id"><span class="type-annotation">ID</span> <span class="parameter-name">id</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.9.2/dart-core/bool-class.html">bool</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Checks if an entity with the given <code>id</code> exists.
+  
+
+</dd>
+
+        <dt id="findAll" class="callable">
+  <span class="name"><a href="../jetleaf_data/CrudRepository/findAll.html">findAll</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieves all entities from the repository.
+  
+
+</dd>
+
+        <dt id="findAllById" class="callable">
+  <span class="name"><a href="../jetleaf_data/CrudRepository/findAllById.html">findAllById</a></span><span class="signature">(<wbr><span class="parameter" id="findAllById-param-ids"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter">ID</span>&gt;</span></span> <span class="parameter-name">ids</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieves all entities matching the given <code>ids</code>.
+  
+
+</dd>
+
+        <dt id="findById" class="callable">
+  <span class="name"><a href="../jetleaf_data/CrudRepository/findById.html">findById</a></span><span class="signature">(<wbr><span class="parameter" id="findById-param-id"><span class="type-annotation">ID</span> <span class="parameter-name">id</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Finds an entity by its <code>id</code>.
+  
+
+</dd>
+
+        <dt id="findByProperty" class="callable">
+  <span class="name"><a href="../jetleaf_data/CrudRepository/findByProperty.html">findByProperty</a></span><span class="signature">(<wbr><span class="parameter" id="findByProperty-param-property"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">property</span>, [</span><span class="parameter" id="findByProperty-param-ignoreCase"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">ignoreCase</span> = <span class="default-value">false</span></span>])
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Finds a single entity by a given <code>property</code>, optionally ignoring case.
+  
+
+</dd>
+
+        <dt id="getCount" class="callable">
+  <span class="name"><a href="../jetleaf_data/CrudRepository/getCount.html">getCount</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.9.2/dart-core/int-class.html">int</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns the total number of entities in the repository.
+  
+
+</dd>
+
+        <dt id="getDartType" class="callable inherited">
+  <span class="name"><a href="../repository/Repository/getDartType.html">getDartType</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/jetleaf_lang/1.0.1/lang/Class-class.html">Class</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Returns the <a href="https://pub.dev/documentation/jetleaf_lang/1.0.1/lang/Class-class.html">Class</a> representing the entity type <code>T</code>.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="getId" class="callable inherited">
+  <span class="name"><a href="../repository/Repository/getId.html">getId</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Type-class.html">Type</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Returns the Dart runtime <a href="https://api.dart.dev/stable/3.9.2/dart-core/Type-class.html">Type</a> of the entity identifier <code>ID</code>.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="getIdType" class="callable inherited">
+  <span class="name"><a href="../repository/Repository/getIdType.html">getIdType</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/jetleaf_lang/1.0.1/lang/Class-class.html">Class</a><span class="signature">&lt;<wbr><span class="type-parameter">ID</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Returns the <a href="https://pub.dev/documentation/jetleaf_lang/1.0.1/lang/Class-class.html">Class</a> representing the ID type <code>ID</code>.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="getType" class="callable inherited">
+  <span class="name"><a href="../repository/Repository/getType.html">getType</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Type-class.html">Type</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Returns the Dart runtime <a href="https://api.dart.dev/stable/3.9.2/dart-core/Type-class.html">Type</a> of the entity <code>T</code>.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="noSuchMethod" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
+    <span class="returntype parameter">&#8594; dynamic</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Invoked when a nonexistent method or property is accessed.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="query" class="callable inherited">
+  <span class="name"><a href="../repository/Repository/query.html">query</a></span><span class="signature">&lt;<wbr><span class="type-parameter">U</span>&gt;</span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">U?</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Executes a query returning a single result of type <code>U</code>.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="queryIterable" class="callable inherited">
+  <span class="name"><a href="../repository/Repository/queryIterable.html">queryIterable</a></span><span class="signature">&lt;<wbr><span class="type-parameter">U</span>&gt;</span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter">U</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Executes a query returning multiple results as an <a href="https://api.dart.dev/stable/3.9.2/dart-core/Iterable-class.html">Iterable</a> of <code>U</code>.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="queryList" class="callable inherited">
+  <span class="name"><a href="../repository/Repository/queryList.html">queryList</a></span><span class="signature">&lt;<wbr><span class="type-parameter">U</span>&gt;</span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.9.2/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">U</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Executes a query returning results as a <a href="https://api.dart.dev/stable/3.9.2/dart-core/List-class.html">List</a> of <code>U</code>.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="querySet" class="callable inherited">
+  <span class="name"><a href="../repository/Repository/querySet.html">querySet</a></span><span class="signature">&lt;<wbr><span class="type-parameter">U</span>&gt;</span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Set-class.html">Set</a><span class="signature">&lt;<wbr><span class="type-parameter">U</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Executes a query returning results as a <a href="https://api.dart.dev/stable/3.9.2/dart-core/Set-class.html">Set</a> of <code>U</code>.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="save" class="callable">
+  <span class="name"><a href="../jetleaf_data/CrudRepository/save.html">save</a></span><span class="signature">&lt;<wbr><span class="type-parameter">S extends T</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="save-param-entity"><span class="type-annotation">S</span> <span class="parameter-name">entity</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">S</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Saves a single <code>entity</code> to the repository.
+  
+
+</dd>
+
+        <dt id="saveAll" class="callable">
+  <span class="name"><a href="../jetleaf_data/CrudRepository/saveAll.html">saveAll</a></span><span class="signature">&lt;<wbr><span class="type-parameter">S extends T</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="saveAll-param-entities"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter">S</span>&gt;</span></span> <span class="parameter-name">entities</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter">S</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Saves multiple <code>entities</code> to the repository.
+  
+
+</dd>
+
+        <dt id="toString" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object/toString.html">toString</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  A string representation of this object.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="operators">
+    <h2>Operators</h2>
+    <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  The equality operator.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+  <section class="summary offset-anchor" id="static-properties">
+    <h2>Static Properties</h2>
+    <dl class="properties">
+        <dt id="CLASS" class="property">
+  <span class="name"><a href="../jetleaf_data/CrudRepository/CLASS.html">CLASS</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/jetleaf_lang/1.0.1/lang/Class-class.html">Class</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../jetleaf_data/CrudRepository-class.html">CrudRepository</a></span>&gt;</span></span>
+  
+
+</dt>
+<dd>
+  The reflective <a href="https://pub.dev/documentation/jetleaf_lang/1.0.1/lang/Class-class.html">Class</a> handle representing the <code>CrudRepository</code> interface.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+    
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../index.html">jetleaf_data</a></li>
+    <li><a href="../jetleaf_data/">jetleaf_data</a></li>
+    <li class="self-crumb">CrudRepository<span class="signature">&lt;<wbr><span class="type-parameter">T</span>, <span class="type-parameter">ID</span>&gt;</span> class</li>
+</ol>
+
+    <h5>jetleaf_data library</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    jetleaf_data
+      1.0.0
+  </span>
+  
+</footer>
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the DefaultRepositoryContext.new constructor from Class DefaultRepositoryContext from the jetleaf_data library, for the Dart programming language.">
+  <title>DefaultRepositoryContext.new constructor - DefaultRepositoryContext - jetleaf_data library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">jetleaf_data</a></li>
+    <li><a href="../../jetleaf_data/">jetleaf_data.dart</a></li>
+    <li><a href="../../jetleaf_data/DefaultRepositoryContext-class.html">DefaultRepositoryContext</a></li>
+    <li class="self-crumb">DefaultRepositoryContext.new constructor</li>
+  </ol>
+  <div class="self-name">DefaultRepositoryContext.new</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="jetleaf_data&#47;DefaultRepositoryContext-class-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-constructor">DefaultRepositoryContext</span> constructor 
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+      <span class="name ">DefaultRepositoryContext</span>(<wbr>)
+    </section>
+    
+<section class="desc markdown">
+  <p>The default runtime implementation of <a href="../../jetleaf_data/RepositoryContext-class.html">RepositoryContext</a>, responsible for
+<strong>discovering repository classes</strong>, <strong>building repository method definitions</strong>,
+and <strong>providing the active <a href="../../jetleaf_data/RepositoryExecutor-class.html">RepositoryExecutor</a></strong> for repository operations.</p>
+<p>This implementation integrates deeply with the Jetleaf application runtime:</p>
+<ul>
+<li>Implements <a href="https://pub.dev/documentation/jetleaf_core/1.0.1/core/ApplicationContextAware-class.html">ApplicationContextAware</a> to access pods, definitions, metadata,
+and annotations.</li>
+<li>Implements <a href="https://pub.dev/documentation/jetleaf_pod/1.0.1/pod/InitializingPod-class.html">InitializingPod</a> to perform discovery after the application
+context is ready.</li>
+<li>Automatically detects pods annotated with <code>@Repository</code> and registers
+method-level <a href="../../jetleaf_data/RepositoryDefinition-class.html">RepositoryDefinition</a>s.</li>
+<li>Lazily resolves a <a href="../../jetleaf_data/RepositoryExecutor-class.html">RepositoryExecutor</a> from the application context.</li>
+</ul>
+<h3 id="automatic-repository-discovery">Automatic Repository Discovery</h3>
+<p>On initialization, this context:</p>
+<ol>
+<li>Scans all pod definitions in the <a href="https://pub.dev/documentation/jetleaf_core/1.0.1/context/ApplicationContext-class.html">ApplicationContext</a>.</li>
+<li>Identifies classes directly annotated with <code>@Repository</code>.</li>
+<li>Retrieves their instances.</li>
+<li>Creates and registers a <a href="../../jetleaf_data/RepositoryDefinition-class.html">RepositoryDefinition</a> for each method.</li>
+</ol>
+<p>This provides full runtime repository support without requiring
+explicit configuration.</p>
+<h3 id="usage-example">Usage Example</h3>
+<pre class="language-dart"><code class="language-dart">final context = DefaultRepositoryContext();
+
+// Application framework injects context + event bus
+context.setApplicationContext(appContext);
+context.setApplicationEventBus(eventBus);
+
+await context.onReady(); // Discovers repositories and definitions
+
+final executor = context.getExecutor();
+final definition = context.getDefinition(myMethod);
+</code></pre>
+<h3 id="design-notes">Design Notes</h3>
+<ul>
+<li>Falls back to explicit configuration if no <a href="../../jetleaf_data/RepositoryExecutor-class.html">RepositoryExecutor</a> is found;
+calling <a href="../../jetleaf_data/DefaultRepositoryContext/getExecutor.html">getExecutor</a> without an executor throws an <a href="https://pub.dev/documentation/jetleaf_lang/1.0.1/lang/IllegalStateException-class.html">IllegalStateException</a>.</li>
+<li>Logs discovery steps when debug logging is enabled.</li>
+<li>Treats repository discovery as dynamic and annotation-driven.</li>
+<li>Uses <a href="../../jetleaf_data/AbstractRepositoryContext-class.html">AbstractRepositoryContext</a> as the base for definition storage.</li>
+</ul>
+<h3 id="example-behavior">Example Behavior</h3>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RepositoryExecutor exists in context</td>
+<td>Executor assigned during <code>onReady()</code></td>
+</tr>
+<tr>
+<td>No RepositoryExecutor</td>
+<td><code>getExecutor()</code> throws <code>IllegalStateException</code></td>
+</tr>
+<tr>
+<td>Pod annotated with <code>@Repository</code></td>
+<td>All methods registered as repository operations</td>
+</tr>
+</tbody>
+</table>
+<h3 id="see-also">See Also</h3>
+<ul>
+<li><a href="../../jetleaf_data/RepositoryContext-class.html">RepositoryContext</a></li>
+<li><a href="../../jetleaf_data/AbstractRepositoryContext-class.html">AbstractRepositoryContext</a></li>
+<li><a href="../../jetleaf_data/RepositoryExecutor-class.html">RepositoryExecutor</a></li>
+<li><a href="https://pub.dev/documentation/jetleaf_core/1.0.1/context/ApplicationContext-class.html">ApplicationContext</a></li>
+<li><a href="https://pub.dev/documentation/jetleaf_pod/1.0.1/pod/InitializingPod-class.html">InitializingPod</a></li>
+<li><a href="../../annotation/Repository-class.html">Repository</a></li>
+</ul>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">DefaultRepositoryContext();</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../../index.html">jetleaf_data</a></li>
+    <li><a href="../../jetleaf_data/">jetleaf_data</a></li>
+    <li><a href="../../jetleaf_data/DefaultRepositoryContext-class.html">DefaultRepositoryContext</a></li>
+    <li class="self-crumb">DefaultRepositoryContext.new constructor</li>
+</ol>
+
+    <h5>DefaultRepositoryContext class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-left-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    jetleaf_data
+      1.0.0
+  </span>
+  
+</footer>
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

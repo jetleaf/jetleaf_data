@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the RepositoryExecutor.new constructor from Class RepositoryExecutor from the jetleaf_data library, for the Dart programming language.">
+  <title>RepositoryExecutor.new constructor - RepositoryExecutor - jetleaf_data library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">jetleaf_data</a></li>
+    <li><a href="../../jetleaf_data/">jetleaf_data.dart</a></li>
+    <li><a href="../../jetleaf_data/RepositoryExecutor-class.html">RepositoryExecutor</a></li>
+    <li class="self-crumb">RepositoryExecutor.new const constructor</li>
+  </ol>
+  <div class="self-name">RepositoryExecutor.new</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="jetleaf_data&#47;RepositoryExecutor-class-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-constructor">RepositoryExecutor</span> constructor 
+</h1></div>
+
+    <section class="multi-line-signature">
+      const
+      <span class="name ">RepositoryExecutor</span>(<wbr>)
+    </section>
+    
+<section class="desc markdown">
+  <p>An <strong>abstract executor</strong> for performing CRUD and query operations on
+<a href="../../repository/Repository-class.html">Repository</a> instances in a uniform, asynchronous manner.</p>
+<p>This class provides default, no-op implementations for repository
+operations, returning <code>null</code>, empty collections, or default values. It
+is intended to be <strong>extended</strong> by concrete executor implementations
+that interact with actual data stores.</p>
+<p>The executor handles operations such as:</p>
+<ul>
+<li>Finding entities by ID or property</li>
+<li>Checking existence</li>
+<li>Saving and deleting entities</li>
+<li>Pagination and sorting</li>
+</ul>
+<h3 id="usage-example">Usage Example</h3>
+<pre class="language-dart"><code class="language-dart">class MyRepositoryExecutor extends RepositoryExecutor {
+  @override
+  Future&lt;T?&gt; findById&lt;T, ID&gt;(ID id, Repository&lt;T, ID&gt; repository) async {
+    // Implement custom logic
+    return repository.find(id);
+  }
+}
+
+final executor = MyRepositoryExecutor();
+final user = await executor.findById&lt;User, String&gt;("123", userRepository);
+</code></pre>
+<h3 id="design-notes">Design Notes</h3>
+<ul>
+<li>Provides asynchronous API for all repository operations</li>
+<li>Default implementations are safe no-ops for testing or stubbing</li>
+<li>Should be extended to implement actual persistence behavior</li>
+<li>Includes support for pagination (<a href="../../jetleaf_data/Pageable-class.html">Pageable</a>) and sorting (<a href="../../jetleaf_data/Sort-class.html">Sort</a>)</li>
+</ul>
+<h3 id="example-behavior">Example Behavior</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Return (default)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>execute&lt;T&gt;()</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>findAll&lt;T, ID&gt;()</code></td>
+<td><code>[]</code></td>
+</tr>
+<tr>
+<td><code>existsById&lt;T, ID&gt;()</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>getCount&lt;T, ID&gt;()</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>save&lt;T, ID, S extends T&gt;()</code></td>
+<td>entity itself</td>
+</tr>
+<tr>
+<td><code>findPage&lt;T, ID&gt;()</code></td>
+<td>empty <a href="../../jetleaf_data/Page-class.html">Page</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="see-also">See Also</h3>
+<ul>
+<li><a href="../../repository/Repository-class.html">Repository</a></li>
+<li><a href="../../jetleaf_data/Pageable-class.html">Pageable</a></li>
+<li><a href="../../jetleaf_data/Page-class.html">Page</a></li>
+<li><a href="../../jetleaf_data/Sort-class.html">Sort</a></li>
+</ul>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">const RepositoryExecutor();</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../../index.html">jetleaf_data</a></li>
+    <li><a href="../../jetleaf_data/">jetleaf_data</a></li>
+    <li><a href="../../jetleaf_data/RepositoryExecutor-class.html">RepositoryExecutor</a></li>
+    <li class="self-crumb">RepositoryExecutor.new const constructor</li>
+</ol>
+
+    <h5>RepositoryExecutor class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-left-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    jetleaf_data
+      1.0.0
+  </span>
+  
+</footer>
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+
