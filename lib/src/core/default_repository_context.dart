@@ -102,7 +102,7 @@ final class DefaultRepositoryContext extends AbstractRepositoryContext implement
   /// The repository context uses this to:
   /// - Look up the `RepositoryExecutor`
   /// - Access other infrastructure components
-  /// - Discover repository-annotated beans during initialization
+  /// - Discover repository-annotated pods during initialization
   late ApplicationContext _applicationContext;
 
   /// The executor responsible for performing actual repository operations.
