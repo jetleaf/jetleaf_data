@@ -79,7 +79,7 @@ abstract class RepositoryMethodInterceptor implements MethodInterceptor, MethodB
     }
 
     final eventBus = getEventBus();
-    await eventBus.onEvent(InterceptedRepositoryMethodEvent(definition, invocation));
+    await eventBus.onEvent(InterceptedRepositoryMethodEvent(definition, invocation, DateTime.now()));
   }
 
   /// Returns the repository-method definition associated with the given [method].
