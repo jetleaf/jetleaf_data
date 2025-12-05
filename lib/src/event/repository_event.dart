@@ -43,7 +43,7 @@ import '../core/repository_definition.dart';
 /// {@endtemplate}
 abstract class RepositoryEvent extends ApplicationEvent {
   /// {@macro jetleaf_repository_event}
-  RepositoryEvent(RepositoryDefinition super.source);
+  const RepositoryEvent(RepositoryDefinition super.source, super.timestamp);
 
   @override
   String getPackageName() => PackageNames.DATA;
@@ -82,7 +82,7 @@ final class InterceptedRepositoryMethodEvent<T> extends RepositoryEvent {
   final MethodInvocation<T> _invocation;
 
   /// {@macro jetleaf_intercepted_repository_method_event}
-  InterceptedRepositoryMethodEvent(super.source, this._invocation);
+  const InterceptedRepositoryMethodEvent(super.source, this._invocation, super.timestamp);
 
   /// Returns the [MethodInvocation] associated with this intercepted event.
   MethodInvocation<T> getInvocation() => _invocation;
