@@ -224,8 +224,8 @@ final class RepositoryAwareProcessor extends PodInitializationProcessor implemen
   /// ```
   Future<RepositoryContext> _getContext() async {
     RepositoryContext repositoryContext;
-    if (_repositoryContext != null) {
-      repositoryContext = _repositoryContext!;
+    if (_repositoryContext case final context?) {
+      repositoryContext = context;
     } else {
       repositoryContext = await _context.get(RepositoryContext.CLASS);
     }
