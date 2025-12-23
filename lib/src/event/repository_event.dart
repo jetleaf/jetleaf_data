@@ -77,6 +77,7 @@ abstract class RepositoryEvent extends ApplicationEvent {
 /// - [MethodInvocation]
 /// - [RepositoryDefinition]
 /// {@endtemplate}
+@Generic(InterceptedRepositoryMethodEvent)
 final class InterceptedRepositoryMethodEvent<T> extends RepositoryEvent {
   /// The intercepted method invocation.
   final MethodInvocation<T> _invocation;
